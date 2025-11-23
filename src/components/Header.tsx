@@ -7,7 +7,7 @@ const Header = () => {
       <div className="container flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-gradient-hero rounded-lg" />
-          <span className="text-xl font-bold">eBay Ambassador</span>
+          <span className="text-xl font-bold">Ambassador</span>
         </div>
         
         <nav className="hidden md:flex items-center gap-8">

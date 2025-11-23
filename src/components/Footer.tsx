@@ -6,10 +6,10 @@ const Footer = () => {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 bg-gradient-hero rounded-lg" />
-              <span className="text-lg font-bold">eBay Ambassador</span>
+              <span className="text-lg font-bold">Ambassador</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Turn your influence into passive income with eBay's trusted marketplace.
+              Turn your influence into passive income.
             </p>
           </div>
           
@@ -45,7 +45,7 @@ const Footer = () => {
         </div>
         
         <div className="pt-8 border-t border-border/40 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} eBay Ambassador. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Ambassador. All rights reserved.</p>
         </div>
       </div>
     </footer>

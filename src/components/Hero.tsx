@@ -31,7 +31,7 @@ const Hero = () => {
           </h1>
           
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl">
-            Join eBay Ambassador and start earning commissions by sharing products you love. 
+            Join Ambassador and start earning commissions by sharing products you love. 
             No technical skills needed—just curate, share, and earn.
           </p>
           

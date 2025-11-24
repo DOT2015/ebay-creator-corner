@@ -1,4 +1,4 @@
-import { LayoutDashboard, Package, Link as LinkIcon, FileText, Settings, Users, LogOut } from 'lucide-react';
+import { LayoutDashboard, Package, Link as LinkIcon, FileText, Settings, Users, LogOut, ArrowLeftRight } from 'lucide-react';
 import { NavLink } from '@/components/NavLink';
 import { useAuth } from '@/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
@@ -20,6 +20,7 @@ const menuItems = [
   { title: 'Dashboard', url: '/admin', icon: LayoutDashboard },
   { title: 'Products', url: '/admin/products', icon: Package },
   { title: 'Affiliate Links', url: '/admin/links', icon: LinkIcon },
+  { title: 'Comparisons', url: '/admin/comparisons', icon: ArrowLeftRight },
   { title: 'Blog Posts', url: '/admin/blog', icon: FileText },
   { title: 'Users & Roles', url: '/admin/users', icon: Users },
   { title: 'Settings', url: '/admin/settings', icon: Settings },

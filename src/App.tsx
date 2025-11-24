@@ -15,6 +15,11 @@ import Login from "./pages/admin/Login";
 import Dashboard from "./pages/admin/Dashboard";
 import ProductList from "./pages/admin/products/ProductList";
 import ProductForm from "./pages/admin/products/ProductForm";
+import LinkManager from "./pages/admin/links/LinkManager";
+import BlogList from "./pages/admin/blog/BlogList";
+import BlogForm from "./pages/admin/blog/BlogForm";
+import ComparisonManager from "./pages/admin/comparisons/ComparisonManager";
+import ComparisonForm from "./pages/admin/comparisons/ComparisonForm";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +44,13 @@ const App = () => (
             <Route path="/admin/products" element={<ProductList />} />
             <Route path="/admin/products/new" element={<ProductForm />} />
             <Route path="/admin/products/:id" element={<ProductForm />} />
+            <Route path="/admin/links" element={<LinkManager />} />
+            <Route path="/admin/blog" element={<BlogList />} />
+            <Route path="/admin/blog/new" element={<BlogForm />} />
+            <Route path="/admin/blog/:id" element={<BlogForm />} />
+            <Route path="/admin/comparisons" element={<ComparisonManager />} />
+            <Route path="/admin/comparisons/new" element={<ComparisonForm />} />
+            <Route path="/admin/comparisons/:id" element={<ComparisonForm />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

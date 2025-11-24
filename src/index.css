@@ -97,3 +97,21 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+/* Rich Text Editor Styles */
+.rich-text-editor .ql-container {
+  @apply border border-input rounded-md min-h-[300px];
+}
+
+.rich-text-editor .ql-toolbar {
+  @apply border border-input rounded-t-md bg-muted/30;
+}
+
+.rich-text-editor .ql-editor {
+  @apply min-h-[300px];
+}
+
+.rich-text-editor .ql-editor.ql-blank::before {
+  @apply text-muted-foreground;
+}
+

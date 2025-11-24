@@ -1,68 +1,37 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
-import heroImage from "@/assets/hero-image.jpg";
+import { ShoppingBag, TrendingUp } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src={heroImage} 
-          alt="Content creators working together" 
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/60" />
-      </div>
+    <section className="relative bg-gradient-hero py-20 overflow-hidden">
+      <div className="absolute inset-0 bg-grid-white/10" />
       
-      {/* Content */}
       <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6 backdrop-blur-sm">
-            <Sparkles className="w-4 h-4" />
-            <span className="text-sm font-medium">For Influencers & Creators</span>
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-6">
+            <TrendingUp className="w-4 h-4" />
+            <span className="text-sm font-medium">Your Trusted Deals & Product Picks</span>
           </div>
           
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-            Turn Your Influence Into
-            <span className="block bg-gradient-hero bg-clip-text text-transparent">
-              Passive Income
-            </span>
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-white">
+            SmartBuy Hub
           </h1>
           
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl">
-            Join Ambassador and start earning commissions by sharing products you love. 
-            No technical skills needed—just curate, share, and earn.
+          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+            Discover the best deals from Amazon and Temu. Curated products, honest reviews, and exclusive offers - all in one place.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button size="lg" className="text-lg group">
-              Get Started Free
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" variant="secondary" className="text-lg group">
+              <ShoppingBag className="mr-2 h-5 w-5" />
+              Browse Amazon Deals
             </Button>
-            <Button size="lg" variant="outline" className="text-lg">
-              How It Works
+            <Button size="lg" className="text-lg bg-accent hover:bg-accent/90">
+              Explore Temu Offers
             </Button>
-          </div>
-          
-          <div className="mt-12 flex flex-wrap items-center gap-8 text-sm text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-primary" />
-              <span>No coding required</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-primary" />
-              <span>Easy product curation</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-primary" />
-              <span>Track your earnings</span>
-            </div>
           </div>
         </div>
       </div>
     </section>
   );
 };
-
-export default Hero;

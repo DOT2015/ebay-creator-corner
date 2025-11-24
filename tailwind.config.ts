@@ -64,12 +64,12 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       backgroundImage: {
-        'gradient-hero': 'var(--gradient-hero)',
-        'gradient-card': 'var(--gradient-card)',
+        'gradient-hero': 'linear-gradient(135deg, hsl(217, 91%, 60%), hsl(210, 100%, 65%))',
+        'gradient-card': 'linear-gradient(180deg, hsl(0, 0%, 100%), hsl(220, 14%, 98%))',
       },
       boxShadow: {
-        'soft': 'var(--shadow-soft)',
-        'card': 'var(--shadow-card)',
+        'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
+        'card': '0 4px 20px -2px rgba(66, 133, 244, 0.15)',
       },
       keyframes: {
         "accordion-down": {

@@ -1,1 +1,4 @@
 project_id = "jdkajsiwvcvlecdbtaxn"
+
+[functions.fetch-amazon-product]
+verify_jwt = false

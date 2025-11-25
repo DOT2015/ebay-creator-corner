@@ -23,6 +23,11 @@ const Index = () => {
     fetchProducts();
   }, []);
 
+  const cleanPrice = (price: string) => {
+    // Remove HTML tags and clean up price
+    return price.replace(/<[^>]*>/g, '').trim();
+  };
+
   const fetchProducts = async () => {
     // Fetch Amazon products
     const { data: amazonProducts } = await supabase
@@ -37,7 +42,7 @@ const Index = () => {
       setTrendingAmazon(amazonProducts.map(p => ({
         title: p.title,
         description: p.description || '',
-        price: p.price,
+        price: cleanPrice(p.price),
         image: p.image_url,
         category: p.category,
         link: p.affiliate_link || '#'
@@ -57,7 +62,7 @@ const Index = () => {
       setTrendingTemu(temuProducts.map(p => ({
         title: p.title,
         description: p.description || '',
-        price: p.price,
+        price: cleanPrice(p.price),
         image: p.image_url,
         category: p.category,
         link: p.affiliate_link || '#'
@@ -77,7 +82,7 @@ const Index = () => {
       setTopPicks(featuredProducts.map(p => ({
         title: p.title,
         description: p.description || '',
-        price: p.price,
+        price: cleanPrice(p.price),
         image: p.image_url,
         category: p.category,
         link: p.affiliate_link || '#'

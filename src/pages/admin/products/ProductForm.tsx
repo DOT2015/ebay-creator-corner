@@ -31,6 +31,7 @@ const ProductForm = () => {
     is_featured: false,
   });
   const [loading, setLoading] = useState(false);
+  const [fetchingProduct, setFetchingProduct] = useState(false);
 
   useEffect(() => {
     if (isEdit) {
@@ -54,6 +55,43 @@ const ProductForm = () => {
       navigate('/admin/products');
     } else if (data) {
       setFormData(data);
+    }
+  };
+
+  const fetchProductData = async (url: string) => {
+    if (!url || (!url.includes('amazon.com') && !url.includes('amzn.to'))) {
+      return;
+    }
+
+    setFetchingProduct(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('fetch-amazon-product', {
+        body: { url },
+      });
+
+      if (error) throw error;
+
+      if (data) {
+        setFormData((prev: any) => ({
+          ...prev,
+          title: data.title || prev.title,
+          price: data.price || prev.price,
+          image_url: data.image_url || prev.image_url,
+        }));
+        toast({
+          title: 'Success',
+          description: 'Product data fetched from Amazon',
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching product data:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to fetch product data. You can enter it manually.',
+        variant: 'destructive',
+      });
+    } finally {
+      setFetchingProduct(false);
     }
   };
 
@@ -202,13 +240,26 @@ const ProductForm = () => {
 
               <div className="space-y-2">
                 <Label htmlFor="affiliate_link">Affiliate Link</Label>
-                <Input
-                  id="affiliate_link"
-                  type="url"
-                  value={formData.affiliate_link || ''}
-                  onChange={(e) => setFormData({ ...formData, affiliate_link: e.target.value })}
-                  placeholder="https://amazon.com/..."
-                />
+                <div className="flex gap-2">
+                  <Input
+                    id="affiliate_link"
+                    type="url"
+                    value={formData.affiliate_link || ''}
+                    onChange={(e) => setFormData({ ...formData, affiliate_link: e.target.value })}
+                    placeholder="https://amzn.to/..."
+                  />
+                  <Button
+                    type="button"
+                    variant="secondary"
+                    onClick={() => fetchProductData(formData.affiliate_link)}
+                    disabled={fetchingProduct || !formData.affiliate_link}
+                  >
+                    {fetchingProduct ? 'Fetching...' : 'Fetch Data'}
+                  </Button>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Paste an Amazon link and click "Fetch Data" to auto-populate product details
+                </p>
               </div>
 
               <div className="flex items-center space-x-2">

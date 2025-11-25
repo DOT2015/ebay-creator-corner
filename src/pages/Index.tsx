@@ -1,80 +1,89 @@
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import ProductCard from "@/components/ProductCard";
 import Footer from "@/components/Footer";
+import { supabase } from "@/integrations/supabase/client";
+
+interface Product {
+  title: string;
+  description: string;
+  price: string;
+  image: string;
+  category: string;
+  link: string;
+}
 
 const Index = () => {
-  const trendingAmazon = [
-    {
-      title: "Wireless Noise-Cancelling Headphones",
-      description: "Premium sound quality with active noise cancellation",
-      price: "$149.99",
-      image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop",
-      category: "Tech"
-    },
-    {
-      title: "Smart Fitness Watch",
-      description: "Track your health and fitness goals",
-      price: "$299.99",
-      image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop",
-      category: "Tech"
-    },
-    {
-      title: "Stainless Steel Cookware Set",
-      description: "Professional-grade kitchen essentials",
-      price: "$199.99",
-      image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=500&h=500&fit=crop",
-      category: "Kitchen"
-    },
-  ];
+  const [trendingAmazon, setTrendingAmazon] = useState<Product[]>([]);
+  const [trendingTemu, setTrendingTemu] = useState<Product[]>([]);
+  const [topPicks, setTopPicks] = useState<Product[]>([]);
 
-  const trendingTemu = [
-    {
-      title: "LED Strip Lights",
-      description: "Color-changing ambiance lighting",
-      price: "$12.99",
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=500&fit=crop",
-      category: "Home"
-    },
-    {
-      title: "Portable Bluetooth Speaker",
-      description: "Compact and powerful sound",
-      price: "$24.99",
-      image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&h=500&fit=crop",
-      category: "Tech"
-    },
-    {
-      title: "Minimalist Desk Organizer",
-      description: "Keep your workspace tidy",
-      price: "$15.99",
-      image: "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=500&h=500&fit=crop",
-      category: "Home"
-    },
-  ];
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
-  const topPicks = [
-    {
-      title: "Professional Camera Lens",
-      description: "Capture stunning photos",
-      price: "$549.99",
-      image: "https://images.unsplash.com/photo-1606400082777-ef05f3c5cde9?w=500&h=500&fit=crop",
-      category: "Tech"
-    },
-    {
-      title: "Designer Backpack",
-      description: "Stylish and functional",
-      price: "$89.99",
-      image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop",
-      category: "Fashion"
-    },
-    {
-      title: "Car Phone Mount",
-      description: "Secure hands-free driving",
-      price: "$19.99",
-      image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=500&h=500&fit=crop",
-      category: "Car Accessories"
-    },
-  ];
+  const fetchProducts = async () => {
+    // Fetch Amazon products
+    const { data: amazonProducts } = await supabase
+      .from('products')
+      .select('*')
+      .eq('platform', 'amazon')
+      .eq('is_published', true)
+      .order('sort_order', { ascending: true })
+      .limit(3);
+
+    if (amazonProducts) {
+      setTrendingAmazon(amazonProducts.map(p => ({
+        title: p.title,
+        description: p.description || '',
+        price: p.price,
+        image: p.image_url,
+        category: p.category,
+        link: p.affiliate_link || '#'
+      })));
+    }
+
+    // Fetch Temu products
+    const { data: temuProducts } = await supabase
+      .from('products')
+      .select('*')
+      .eq('platform', 'temu')
+      .eq('is_published', true)
+      .order('sort_order', { ascending: true })
+      .limit(3);
+
+    if (temuProducts) {
+      setTrendingTemu(temuProducts.map(p => ({
+        title: p.title,
+        description: p.description || '',
+        price: p.price,
+        image: p.image_url,
+        category: p.category,
+        link: p.affiliate_link || '#'
+      })));
+    }
+
+    // Fetch featured products for Daily Top Picks
+    const { data: featuredProducts } = await supabase
+      .from('products')
+      .select('*')
+      .eq('is_published', true)
+      .eq('is_featured', true)
+      .order('sort_order', { ascending: true })
+      .limit(3);
+
+    if (featuredProducts) {
+      setTopPicks(featuredProducts.map(p => ({
+        title: p.title,
+        description: p.description || '',
+        price: p.price,
+        image: p.image_url,
+        category: p.category,
+        link: p.affiliate_link || '#'
+      })));
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -99,6 +108,7 @@ const Index = () => {
                   {...product} 
                   buttonText="Buy on Amazon"
                   buttonVariant="default"
+                  onButtonClick={() => window.open(product.link, '_blank')}
                 />
               ))}
             </div>
@@ -122,6 +132,7 @@ const Index = () => {
                   {...product} 
                   buttonText="Shop on Temu"
                   buttonVariant="accent"
+                  onButtonClick={() => window.open(product.link, '_blank')}
                 />
               ))}
             </div>
@@ -145,6 +156,7 @@ const Index = () => {
                   {...product} 
                   buttonText="View Deal"
                   buttonVariant="secondary"
+                  onButtonClick={() => window.open(product.link, '_blank')}
                 />
               ))}
             </div>

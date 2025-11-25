@@ -47,15 +47,17 @@ serve(async (req) => {
     // Extract price - try multiple selectors
     let price = '';
     const pricePatterns = [
-      /<span class="a-price-whole"[^>]*>(.*?)<\/span>/,
       /<span class="a-offscreen"[^>]*>\$([\d,]+\.?\d*)<\/span>/,
+      /<span class="a-price-whole"[^>]*>([\d,]+\.?\d*)<\/span>/,
       /<span[^>]*class="[^"]*a-price[^"]*"[^>]*>.*?\$([\d,]+\.?\d*).*?<\/span>/s,
     ];
 
     for (const pattern of pricePatterns) {
       const match = html.match(pattern);
       if (match) {
-        price = `$${match[1].replace(',', '')}`;
+        // Clean up the price - remove commas and any HTML tags
+        const priceValue = match[1].replace(/,/g, '').replace(/<[^>]*>/g, '');
+        price = `$${priceValue}`;
         break;
       }
     }

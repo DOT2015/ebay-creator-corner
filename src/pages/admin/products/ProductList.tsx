@@ -105,7 +105,7 @@ const ProductList = () => {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <h2 className="text-3xl font-bold">Product Management</h2>
-          <Button onClick={() => navigate('/admin/products/new')}>
+          <Button onClick={() => navigate('/admin/products/new')} className="transition-all duration-200 hover:scale-105">
             <Plus className="w-4 h-4 mr-2" />
             Add New Product
           </Button>
@@ -113,7 +113,7 @@ const ProductList = () => {
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {products.map((product) => (
-            <Card key={product.id}>
+            <Card key={product.id} className="transition-all duration-200 hover:scale-105 hover:shadow-lg">
               <CardContent className="p-4">
                 <div className="aspect-square mb-3 overflow-hidden rounded-lg bg-muted">
                   <img
@@ -146,7 +146,7 @@ const ProductList = () => {
                     <Button
                       size="sm"
                       variant="outline"
-                      className="flex-1"
+                      className="flex-1 transition-all duration-200 hover:scale-105"
                       onClick={() => navigate(`/admin/products/${product.id}`)}
                     >
                       <Edit className="w-4 h-4 mr-1" />
@@ -156,6 +156,7 @@ const ProductList = () => {
                       size="sm"
                       variant="outline"
                       onClick={() => togglePublish(product.id, product.is_published)}
+                      className="transition-all duration-200 hover:scale-105"
                     >
                       {product.is_published ? (
                         <EyeOff className="w-4 h-4" />
@@ -167,6 +168,7 @@ const ProductList = () => {
                       size="sm"
                       variant="destructive"
                       onClick={() => handleDelete(product.id)}
+                      className="transition-all duration-200 hover:scale-105"
                     >
                       <Trash2 className="w-4 h-4" />
                     </Button>
@@ -181,7 +183,7 @@ const ProductList = () => {
           <Card>
             <CardContent className="p-12 text-center">
               <p className="text-muted-foreground mb-4">No products yet</p>
-              <Button onClick={() => navigate('/admin/products/new')}>
+              <Button onClick={() => navigate('/admin/products/new')} className="transition-all duration-200 hover:scale-105">
                 <Plus className="w-4 h-4 mr-2" />
                 Add Your First Product
               </Button>

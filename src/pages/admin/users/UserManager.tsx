@@ -236,18 +236,19 @@ export default function UserManager() {
                       }
                     }}>
                       <DialogTrigger asChild>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => {
-                            setSelectedUser(user.id);
-                            setSelectedRole(user.role || '');
-                            setDialogOpen(true);
-                          }}
-                        >
-                          <Shield className="h-4 w-4 mr-1" />
-                          Assign Role
-                        </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          setSelectedUser(user.id);
+                          setSelectedRole(user.role || '');
+                          setDialogOpen(true);
+                        }}
+                        className="transition-all duration-200 hover:scale-105"
+                      >
+                        <Shield className="h-4 w-4 mr-1" />
+                        Assign Role
+                      </Button>
                       </DialogTrigger>
                       <DialogContent>
                         <DialogHeader>

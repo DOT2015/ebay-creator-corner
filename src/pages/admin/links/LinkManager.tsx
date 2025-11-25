@@ -171,7 +171,7 @@ const LinkManager = () => {
           <h2 className="text-3xl font-bold">Affiliate Link Manager</h2>
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
-              <Button onClick={() => setEditingLink(null)}>
+              <Button onClick={() => setEditingLink(null)} className="transition-all duration-200 hover:scale-105">
                 <Plus className="w-4 h-4 mr-2" />
                 Add New Link
               </Button>
@@ -236,10 +236,10 @@ const LinkManager = () => {
                 </div>
 
                 <div className="flex gap-2 pt-4">
-                  <Button type="submit">
+                  <Button type="submit" className="transition-all duration-200 hover:scale-105">
                     {editingLink ? 'Update Link' : 'Create Link'}
                   </Button>
-                  <Button type="button" variant="outline" onClick={handleCloseDialog}>
+                  <Button type="button" variant="outline" onClick={handleCloseDialog} className="transition-all duration-200 hover:scale-105">
                     Cancel
                   </Button>
                 </div>
@@ -250,7 +250,7 @@ const LinkManager = () => {
 
         <div className="grid gap-4">
           {links.map((link) => (
-            <Card key={link.id}>
+            <Card key={link.id} className="transition-all duration-200 hover:scale-[1.02] hover:shadow-lg">
               <CardContent className="p-4">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
@@ -280,6 +280,7 @@ const LinkManager = () => {
                       size="sm"
                       variant="outline"
                       onClick={() => copyToClipboard(link.url)}
+                      className="transition-all duration-200 hover:scale-105"
                     >
                       <Copy className="w-4 h-4" />
                     </Button>
@@ -287,6 +288,7 @@ const LinkManager = () => {
                       size="sm"
                       variant="outline"
                       onClick={() => handleEdit(link)}
+                      className="transition-all duration-200 hover:scale-105"
                     >
                       <Edit className="w-4 h-4" />
                     </Button>
@@ -294,6 +296,7 @@ const LinkManager = () => {
                       size="sm"
                       variant="destructive"
                       onClick={() => handleDelete(link.id)}
+                      className="transition-all duration-200 hover:scale-105"
                     >
                       <Trash2 className="w-4 h-4" />
                     </Button>
@@ -308,7 +311,7 @@ const LinkManager = () => {
           <Card>
             <CardContent className="p-12 text-center">
               <p className="text-muted-foreground mb-4">No affiliate links yet</p>
-              <Button onClick={() => setIsDialogOpen(true)}>
+              <Button onClick={() => setIsDialogOpen(true)} className="transition-all duration-200 hover:scale-105">
                 <Plus className="w-4 h-4 mr-2" />
                 Add Your First Link
               </Button>

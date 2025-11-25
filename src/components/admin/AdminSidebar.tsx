@@ -61,10 +61,10 @@ export function AdminSidebar() {
                     <NavLink 
                       to={item.url} 
                       end={item.url === '/admin'}
-                      className="hover:bg-muted/50" 
+                      className="hover:bg-muted/50 transition-all duration-200 hover:scale-105" 
                       activeClassName="bg-muted text-primary font-medium"
                     >
-                      <item.icon className="h-4 w-4" />
+                      <item.icon className="h-4 w-4 transition-transform duration-200" />
                       {!collapsed && <span className="ml-2">{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
@@ -77,10 +77,10 @@ export function AdminSidebar() {
         <div className="mt-auto p-4">
           <Button 
             variant="ghost" 
-            className="w-full justify-start" 
+            className="w-full justify-start transition-all duration-200 hover:scale-105" 
             onClick={handleSignOut}
           >
-            <LogOut className="h-4 w-4" />
+            <LogOut className="h-4 w-4 transition-transform duration-200" />
             {!collapsed && <span className="ml-2">Logout</span>}
           </Button>
         </div>

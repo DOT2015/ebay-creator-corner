@@ -97,7 +97,7 @@ const BlogList = () => {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <h2 className="text-3xl font-bold">Blog Posts</h2>
-          <Button onClick={() => navigate('/admin/blog/new')}>
+          <Button onClick={() => navigate('/admin/blog/new')} className="transition-all duration-200 hover:scale-105">
             <Plus className="w-4 h-4 mr-2" />
             New Post
           </Button>
@@ -105,7 +105,7 @@ const BlogList = () => {
 
         <div className="grid gap-4">
           {posts.map((post) => (
-            <Card key={post.id}>
+            <Card key={post.id} className="transition-all duration-200 hover:scale-[1.02] hover:shadow-lg">
               <CardContent className="p-4">
                 <div className="flex gap-4">
                   {post.featured_image_url && (
@@ -153,6 +153,7 @@ const BlogList = () => {
                           size="sm"
                           variant="outline"
                           onClick={() => navigate(`/admin/blog/${post.id}`)}
+                          className="transition-all duration-200 hover:scale-105"
                         >
                           <Edit className="w-4 h-4" />
                         </Button>
@@ -160,6 +161,7 @@ const BlogList = () => {
                           size="sm"
                           variant="destructive"
                           onClick={() => handleDelete(post.id)}
+                          className="transition-all duration-200 hover:scale-105"
                         >
                           <Trash2 className="w-4 h-4" />
                         </Button>
@@ -176,7 +178,7 @@ const BlogList = () => {
           <Card>
             <CardContent className="p-12 text-center">
               <p className="text-muted-foreground mb-4">No blog posts yet</p>
-              <Button onClick={() => navigate('/admin/blog/new')}>
+              <Button onClick={() => navigate('/admin/blog/new')} className="transition-all duration-200 hover:scale-105">
                 <Plus className="w-4 h-4 mr-2" />
                 Create Your First Post
               </Button>

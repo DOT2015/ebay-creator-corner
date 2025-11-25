@@ -238,13 +238,14 @@ const ComparisonForm = () => {
               </div>
 
               <div className="flex gap-2 pt-4">
-                <Button type="submit" disabled={loading}>
+                <Button type="submit" disabled={loading} className="transition-all duration-200 hover:scale-105">
                   {loading ? 'Saving...' : isEdit ? 'Update Comparison' : 'Create Comparison'}
                 </Button>
                 <Button
                   type="button"
                   variant="outline"
                   onClick={() => navigate('/admin/comparisons')}
+                  className="transition-all duration-200 hover:scale-105"
                 >
                   Cancel
                 </Button>

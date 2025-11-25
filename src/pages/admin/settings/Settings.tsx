@@ -128,7 +128,7 @@ export default function Settings() {
             <h2 className="text-3xl font-bold">Settings</h2>
             <p className="text-muted-foreground">Manage your website configuration</p>
           </div>
-          <Button onClick={handleSave} disabled={saving}>
+          <Button onClick={handleSave} disabled={saving} className="transition-all duration-200 hover:scale-105">
             <Save className="h-4 w-4 mr-2" />
             {saving ? 'Saving...' : 'Save Changes'}
           </Button>

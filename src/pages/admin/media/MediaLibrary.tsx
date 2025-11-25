@@ -160,7 +160,7 @@ export default function MediaLibrary() {
             />
             <label htmlFor="file-upload">
               <Button asChild disabled={uploading}>
-                <span>
+                <span className="transition-all duration-200 hover:scale-105">
                   <Upload className="h-4 w-4 mr-2" />
                   {uploading ? 'Uploading...' : 'Upload File'}
                 </span>
@@ -185,7 +185,7 @@ export default function MediaLibrary() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {filteredMedia.map((item) => (
-              <Card key={item.id} className="overflow-hidden">
+              <Card key={item.id} className="overflow-hidden transition-all duration-200 hover:scale-105 hover:shadow-lg">
                 <div className="aspect-video bg-muted relative">
                   {item.file_type.startsWith('image/') ? (
                     <img

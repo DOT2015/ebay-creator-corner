@@ -103,7 +103,7 @@ const ComparisonManager = () => {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <h2 className="text-3xl font-bold">Comparison Manager</h2>
-          <Button onClick={() => navigate('/admin/comparisons/new')}>
+          <Button onClick={() => navigate('/admin/comparisons/new')} className="transition-all duration-200 hover:scale-105">
             <Plus className="w-4 h-4 mr-2" />
             New Comparison
           </Button>
@@ -111,7 +111,7 @@ const ComparisonManager = () => {
 
         <div className="grid gap-4">
           {comparisons.map((comparison) => (
-            <Card key={comparison.id}>
+            <Card key={comparison.id} className="transition-all duration-200 hover:scale-[1.02] hover:shadow-lg">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div className="flex-1">
@@ -132,6 +132,7 @@ const ComparisonManager = () => {
                       size="sm"
                       variant="outline"
                       onClick={() => navigate(`/admin/comparisons/${comparison.id}`)}
+                      className="transition-all duration-200 hover:scale-105"
                     >
                       <Edit className="w-4 h-4" />
                     </Button>
@@ -139,6 +140,7 @@ const ComparisonManager = () => {
                       size="sm"
                       variant="outline"
                       onClick={() => togglePublish(comparison.id, comparison.is_published)}
+                      className="transition-all duration-200 hover:scale-105"
                     >
                       {comparison.is_published ? (
                         <EyeOff className="w-4 h-4" />
@@ -150,6 +152,7 @@ const ComparisonManager = () => {
                       size="sm"
                       variant="destructive"
                       onClick={() => handleDelete(comparison.id)}
+                      className="transition-all duration-200 hover:scale-105"
                     >
                       <Trash2 className="w-4 h-4" />
                     </Button>
@@ -164,7 +167,7 @@ const ComparisonManager = () => {
           <Card>
             <CardContent className="p-12 text-center">
               <p className="text-muted-foreground mb-4">No comparisons yet</p>
-              <Button onClick={() => navigate('/admin/comparisons/new')}>
+              <Button onClick={() => navigate('/admin/comparisons/new')} className="transition-all duration-200 hover:scale-105">
                 <Plus className="w-4 h-4 mr-2" />
                 Create Your First Comparison
               </Button>

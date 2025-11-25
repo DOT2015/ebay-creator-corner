@@ -52,11 +52,11 @@ const Dashboard = () => {
         <div className="flex items-center justify-between">
           <h2 className="text-3xl font-bold">Dashboard Overview</h2>
           <div className="flex gap-2">
-            <Button onClick={() => navigate('/admin/products/new')}>
+            <Button onClick={() => navigate('/admin/products/new')} className="transition-all duration-200 hover:scale-105">
               <Plus className="w-4 h-4 mr-2" />
               Add Product
             </Button>
-            <Button variant="outline" onClick={() => navigate('/admin/blog/new')}>
+            <Button variant="outline" onClick={() => navigate('/admin/blog/new')} className="transition-all duration-200 hover:scale-105">
               <Plus className="w-4 h-4 mr-2" />
               New Post
             </Button>
@@ -64,7 +64,7 @@ const Dashboard = () => {
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <Card>
+          <Card className="transition-all duration-200 hover:scale-105 hover:shadow-lg">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Total Products</CardTitle>
               <Package className="h-4 w-4 text-muted-foreground" />
@@ -77,7 +77,7 @@ const Dashboard = () => {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="transition-all duration-200 hover:scale-105 hover:shadow-lg">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Amazon Products</CardTitle>
               <Package className="h-4 w-4 text-orange-500" />
@@ -88,7 +88,7 @@ const Dashboard = () => {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="transition-all duration-200 hover:scale-105 hover:shadow-lg">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Temu Products</CardTitle>
               <Package className="h-4 w-4 text-red-500" />
@@ -99,7 +99,7 @@ const Dashboard = () => {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="transition-all duration-200 hover:scale-105 hover:shadow-lg">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Blog Posts</CardTitle>
               <FileText className="h-4 w-4 text-muted-foreground" />
@@ -119,15 +119,15 @@ const Dashboard = () => {
               <CardTitle>Quick Actions</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
-              <Button className="w-full justify-start" variant="outline" onClick={() => navigate('/admin/products')}>
+              <Button className="w-full justify-start transition-all duration-200 hover:scale-105" variant="outline" onClick={() => navigate('/admin/products')}>
                 <Package className="w-4 h-4 mr-2" />
                 Manage Products
               </Button>
-              <Button className="w-full justify-start" variant="outline" onClick={() => navigate('/admin/links')}>
+              <Button className="w-full justify-start transition-all duration-200 hover:scale-105" variant="outline" onClick={() => navigate('/admin/links')}>
                 <TrendingUp className="w-4 h-4 mr-2" />
                 Affiliate Links
               </Button>
-              <Button className="w-full justify-start" variant="outline" onClick={() => navigate('/admin/blog')}>
+              <Button className="w-full justify-start transition-all duration-200 hover:scale-105" variant="outline" onClick={() => navigate('/admin/blog')}>
                 <FileText className="w-4 h-4 mr-2" />
                 Blog Manager
               </Button>

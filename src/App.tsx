@@ -20,6 +20,10 @@ import BlogList from "./pages/admin/blog/BlogList";
 import BlogForm from "./pages/admin/blog/BlogForm";
 import ComparisonManager from "./pages/admin/comparisons/ComparisonManager";
 import ComparisonForm from "./pages/admin/comparisons/ComparisonForm";
+import UserManager from "./pages/admin/users/UserManager";
+import Settings from "./pages/admin/settings/Settings";
+import MediaLibrary from "./pages/admin/media/MediaLibrary";
+import ActivityLog from "./pages/admin/activity/ActivityLog";
 
 const queryClient = new QueryClient();
 
@@ -51,6 +55,10 @@ const App = () => (
             <Route path="/admin/comparisons" element={<ComparisonManager />} />
             <Route path="/admin/comparisons/new" element={<ComparisonForm />} />
             <Route path="/admin/comparisons/:id" element={<ComparisonForm />} />
+            <Route path="/admin/users" element={<UserManager />} />
+            <Route path="/admin/settings" element={<Settings />} />
+            <Route path="/admin/media" element={<MediaLibrary />} />
+            <Route path="/admin/activity" element={<ActivityLog />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

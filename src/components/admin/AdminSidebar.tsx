@@ -22,7 +22,9 @@ const menuItems = [
   { title: 'Affiliate Links', url: '/admin/links', icon: LinkIcon },
   { title: 'Comparisons', url: '/admin/comparisons', icon: ArrowLeftRight },
   { title: 'Blog Posts', url: '/admin/blog', icon: FileText },
+  { title: 'Media Library', url: '/admin/media', icon: FileText },
   { title: 'Users & Roles', url: '/admin/users', icon: Users },
+  { title: 'Activity Log', url: '/admin/activity', icon: FileText },
   { title: 'Settings', url: '/admin/settings', icon: Settings },
 ];
 

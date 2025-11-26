@@ -1,40 +1,41 @@
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { format } from "date-fns";
+
+interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string | null;
+  featured_image_url: string | null;
+  published_at: string | null;
+  slug: string;
+}
 
 const Blog = () => {
-  const posts = [
-    {
-      title: "Top 10 Amazon Gadgets Under $50",
-      excerpt: "Discover the best tech deals that won't break the bank. From smart home devices to portable chargers...",
-      image: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=800&h=400&fit=crop",
-      date: "May 15, 2024",
-      category: "Tech"
-    },
-    {
-      title: "Best Temu Deals Under $20",
-      excerpt: "Amazing finds that prove you don't need to spend a fortune for quality products...",
-      image: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&h=400&fit=crop",
-      date: "May 12, 2024",
-      category: "Shopping"
-    },
-    {
-      title: "Kitchen Must-Haves: Amazon vs Temu",
-      excerpt: "We compare essential kitchen tools from both platforms to help you make the best choice...",
-      image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=800&h=400&fit=crop",
-      date: "May 10, 2024",
-      category: "Kitchen"
-    },
-    {
-      title: "Smart Home Setup on a Budget",
-      excerpt: "Transform your home into a smart home without spending thousands...",
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=400&fit=crop",
-      date: "May 8, 2024",
-      category: "Home"
-    },
-  ];
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = async () => {
+    const { data, error } = await supabase
+      .from('blog_posts')
+      .select('id, title, excerpt, featured_image_url, published_at, slug')
+      .eq('status', 'published')
+      .order('published_at', { ascending: false });
+
+    if (!error && data) {
+      setPosts(data);
+    }
+    setLoading(false);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -51,36 +52,45 @@ const Blog = () => {
 
         <section className="py-20 bg-gradient-card">
           <div className="container px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {posts.map((post, index) => (
-                <Card key={index} className="overflow-hidden hover:shadow-card transition-all duration-300">
-                  <div className="aspect-video overflow-hidden bg-secondary/30">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-4 mb-4">
-                      <span className="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
-                        {post.category}
-                      </span>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Calendar className="w-4 h-4" />
-                        <span>{post.date}</span>
+            {loading ? (
+              <div className="text-center py-12">
+                <p className="text-muted-foreground">Loading posts...</p>
+              </div>
+            ) : posts.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-muted-foreground">No blog posts yet. Check back soon!</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {posts.map((post) => (
+                  <Card key={post.id} className="overflow-hidden hover:shadow-card transition-all duration-300">
+                    {post.featured_image_url && (
+                      <div className="aspect-video overflow-hidden bg-secondary/30">
+                        <img
+                          src={post.featured_image_url}
+                          alt={post.title}
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                        />
                       </div>
-                    </div>
-                    <h3 className="text-2xl font-bold mb-3">{post.title}</h3>
-                    <p className="text-muted-foreground mb-4">{post.excerpt}</p>
-                    <Button variant="outline">
-                      Read More
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+                    )}
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+                        <Calendar className="w-4 h-4" />
+                        <span>{post.published_at ? format(new Date(post.published_at), 'MMM dd, yyyy') : 'Recently'}</span>
+                      </div>
+                      <h3 className="text-2xl font-bold mb-3">{post.title}</h3>
+                      {post.excerpt && (
+                        <p className="text-muted-foreground mb-4">{post.excerpt}</p>
+                      )}
+                      <Button variant="outline">
+                        Read More
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       </main>

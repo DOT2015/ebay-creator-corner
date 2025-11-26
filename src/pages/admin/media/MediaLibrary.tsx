@@ -56,18 +56,33 @@ export default function MediaLibrary() {
 
     setUploading(true);
     try {
-      // For demo purposes, we'll store the file info with a placeholder URL
-      // In production, you'd upload to storage and get the real URL
-      const { error } = await supabase.from('media_library').insert({
+      // Upload file to storage
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Math.random().toString(36).substring(2)}-${Date.now()}.${fileExt}`;
+      const filePath = `${user.id}/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('media')
+        .upload(filePath, file);
+
+      if (uploadError) throw uploadError;
+
+      // Get public URL
+      const { data: { publicUrl } } = supabase.storage
+        .from('media')
+        .getPublicUrl(filePath);
+
+      // Save to database
+      const { error: dbError } = await supabase.from('media_library').insert({
         file_name: file.name,
-        file_url: `https://via.placeholder.com/400x300?text=${encodeURIComponent(file.name)}`,
+        file_url: publicUrl,
         file_type: file.type,
         file_size: file.size,
         alt_text: file.name,
         uploaded_by: user.id,
       });
 
-      if (error) throw error;
+      if (dbError) throw dbError;
 
       toast({
         title: 'Success',
@@ -87,16 +102,30 @@ export default function MediaLibrary() {
     }
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id: string, fileUrl: string) => {
     if (!confirm('Are you sure you want to delete this file?')) return;
 
     try {
-      const { error } = await supabase
+      // Extract file path from URL
+      const urlParts = fileUrl.split('/storage/v1/object/public/media/');
+      if (urlParts.length > 1) {
+        const filePath = urlParts[1];
+        
+        // Delete from storage
+        const { error: storageError } = await supabase.storage
+          .from('media')
+          .remove([filePath]);
+
+        if (storageError) throw storageError;
+      }
+
+      // Delete from database
+      const { error: dbError } = await supabase
         .from('media_library')
         .delete()
         .eq('id', id);
 
-      if (error) throw error;
+      if (dbError) throw dbError;
 
       toast({
         title: 'Success',
@@ -219,7 +248,7 @@ export default function MediaLibrary() {
                     <Button
                       variant="destructive"
                       size="sm"
-                      onClick={() => handleDelete(item.id)}
+                      onClick={() => handleDelete(item.id, item.file_url)}
                     >
                       <Trash2 className="h-3 w-3" />
                     </Button>

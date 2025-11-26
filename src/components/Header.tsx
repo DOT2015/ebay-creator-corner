@@ -8,7 +8,7 @@ const Header = () => {
       <div className="container flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2">
           <ShoppingCart className="w-8 h-8 text-primary" />
-          <span className="text-xl font-bold">SmartBuy Hub</span>
+          <span className="text-xl font-bold">BuSmarter Hub</span>
         </div>
         
         <nav className="hidden md:flex items-center gap-8">

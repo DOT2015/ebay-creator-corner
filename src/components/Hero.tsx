@@ -15,7 +15,7 @@ const Hero = () => {
           </div>
           
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-white">
-            SmartBuy Hub
+            BuSmarter Hub
           </h1>
           
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">

@@ -147,7 +147,7 @@ export default function Settings() {
                   id="site_name"
                   value={settings.site_name}
                   onChange={(e) => handleChange('site_name', e.target.value)}
-                  placeholder="SmartBuy Hub"
+                  placeholder="BuSmarter Hub"
                 />
               </div>
               <div className="space-y-2">
@@ -184,7 +184,7 @@ export default function Settings() {
                   type="email"
                   value={settings.contact_email}
                   onChange={(e) => handleChange('contact_email', e.target.value)}
-                  placeholder="contact@smartbuyhub.com"
+                  placeholder="contact@busmarterhub.com"
                 />
               </div>
               <div className="space-y-2">
@@ -211,7 +211,7 @@ export default function Settings() {
                   id="facebook_url"
                   value={settings.facebook_url}
                   onChange={(e) => handleChange('facebook_url', e.target.value)}
-                  placeholder="https://facebook.com/smartbuyhub"
+                  placeholder="https://facebook.com/busmarterhub"
                 />
               </div>
               <div className="space-y-2">
@@ -220,7 +220,7 @@ export default function Settings() {
                   id="twitter_url"
                   value={settings.twitter_url}
                   onChange={(e) => handleChange('twitter_url', e.target.value)}
-                  placeholder="https://twitter.com/smartbuyhub"
+                  placeholder="https://twitter.com/busmarterhub"
                 />
               </div>
               <div className="space-y-2">
@@ -229,7 +229,7 @@ export default function Settings() {
                   id="instagram_url"
                   value={settings.instagram_url}
                   onChange={(e) => handleChange('instagram_url', e.target.value)}
-                  placeholder="https://instagram.com/smartbuyhub"
+                  placeholder="https://instagram.com/busmarterhub"
                 />
               </div>
             </CardContent>
@@ -247,7 +247,7 @@ export default function Settings() {
                   id="footer_text"
                   value={settings.footer_text}
                   onChange={(e) => handleChange('footer_text', e.target.value)}
-                  placeholder="© 2025 SmartBuy Hub. All rights reserved."
+                  placeholder="© 2025 BuSmarter Hub. All rights reserved."
                   rows={3}
                 />
               </div>

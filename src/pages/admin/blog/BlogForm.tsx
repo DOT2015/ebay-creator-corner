@@ -84,11 +84,27 @@ const BlogForm = () => {
     setLoading(true);
 
     const postData: any = {
-      ...formData,
+      title: formData.title,
+      slug: formData.slug,
+      content: formData.content,
+      excerpt: formData.excerpt || null,
+      featured_image_url: formData.featured_image_url || null,
+      status: formData.status,
+      meta_title: formData.meta_title || null,
+      meta_description: formData.meta_description || null,
+      meta_keywords: formData.meta_keywords || null,
       author_id: user?.id,
     };
 
-    if (formData.status === 'published' && !formData.scheduled_at) {
+    // Only include scheduled_at if status is scheduled and value is provided
+    if (formData.status === 'scheduled' && formData.scheduled_at) {
+      postData.scheduled_at = new Date(formData.scheduled_at).toISOString();
+    } else {
+      postData.scheduled_at = null;
+    }
+
+    // Set published_at when publishing
+    if (formData.status === 'published') {
       postData.published_at = new Date().toISOString();
     }
 

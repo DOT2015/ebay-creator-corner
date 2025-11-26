@@ -11,6 +11,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/hooks/useAuth';
 import { Switch } from '@/components/ui/switch';
+import { ImagePicker } from '@/components/admin/ImagePicker';
 
 const ProductForm = () => {
   const { id } = useParams();
@@ -228,14 +229,29 @@ const ProductForm = () => {
 
               <div className="space-y-2">
                 <Label htmlFor="image_url">Image URL *</Label>
-                <Input
-                  id="image_url"
-                  type="url"
-                  value={formData.image_url}
-                  onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
-                  placeholder="https://example.com/image.jpg"
-                  required
-                />
+                <div className="flex gap-2">
+                  <Input
+                    id="image_url"
+                    type="url"
+                    value={formData.image_url}
+                    onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
+                    placeholder="https://example.com/image.jpg"
+                    required
+                  />
+                  <ImagePicker
+                    onSelect={(url) => setFormData({ ...formData, image_url: url })}
+                    currentUrl={formData.image_url}
+                  />
+                </div>
+                {formData.image_url && (
+                  <div className="mt-2 border rounded-lg overflow-hidden w-32 h-32">
+                    <img
+                      src={formData.image_url}
+                      alt="Preview"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
               </div>
 
               <div className="space-y-2">

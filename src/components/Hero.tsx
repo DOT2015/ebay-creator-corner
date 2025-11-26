@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, TrendingUp } from "lucide-react";
+import { Package, TrendingUp } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -22,13 +23,26 @@ const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="text-lg group">
-              <ShoppingBag className="mr-2 h-5 w-5" />
-              Browse Amazon Deals
-            </Button>
-            <Button size="lg" className="text-lg bg-accent hover:bg-accent/90">
-              Explore Temu Offers
-            </Button>
+            <Link to="/amazon-deals">
+              <Button 
+                size="lg" 
+                variant="secondary" 
+                className="text-lg bg-white text-foreground hover:bg-white/90 shadow-lg"
+              >
+                <div className="mr-3 p-2 bg-muted rounded-lg">
+                  <Package className="h-5 w-5" />
+                </div>
+                Browse Amazon Deals
+              </Button>
+            </Link>
+            <Link to="/temu-deals">
+              <Button 
+                size="lg" 
+                className="text-lg bg-accent hover:bg-accent/90 text-white shadow-lg"
+              >
+                Explore Temu Offers
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

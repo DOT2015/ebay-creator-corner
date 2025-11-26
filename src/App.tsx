@@ -9,6 +9,7 @@ import AmazonDeals from "./pages/AmazonDeals";
 import TemuDeals from "./pages/TemuDeals";
 import Compare from "./pages/Compare";
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/admin/Login";
@@ -40,6 +41,7 @@ const App = () => (
             <Route path="/temu-deals" element={<TemuDeals />} />
             <Route path="/compare" element={<Compare />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
             
             {/* Admin Routes */}

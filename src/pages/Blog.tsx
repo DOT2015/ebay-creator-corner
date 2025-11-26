@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
@@ -82,10 +83,12 @@ const Blog = () => {
                       {post.excerpt && (
                         <p className="text-muted-foreground mb-4">{post.excerpt}</p>
                       )}
-                      <Button variant="outline">
-                        Read More
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                      </Button>
+                      <Link to={`/blog/${post.slug}`}>
+                        <Button variant="outline">
+                          Read More
+                          <ArrowRight className="w-4 h-4 ml-2" />
+                        </Button>
+                      </Link>
                     </CardContent>
                   </Card>
                 ))}

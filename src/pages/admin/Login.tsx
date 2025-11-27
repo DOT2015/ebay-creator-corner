@@ -53,7 +53,7 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 via-background to-secondary/5 p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">BuSmarter Hub Admin</CardTitle>
+          <CardTitle className="text-2xl font-bold text-center">BuySmarter Hub Admin</CardTitle>
           <CardDescription className="text-center">
             Sign in to manage your affiliate website
           </CardDescription>
@@ -72,7 +72,7 @@ const Login = () => {
                   <Input
                     id="login-email"
                     type="email"
-                    placeholder="admin@busmarterhub.com"
+                    placeholder="admin@buysmarterhub.com"
                     value={loginEmail}
                     onChange={(e) => setLoginEmail(e.target.value)}
                     required
@@ -112,7 +112,7 @@ const Login = () => {
                   <Input
                     id="signup-email"
                     type="email"
-                    placeholder="admin@busmarterhub.com"
+                    placeholder="admin@buysmarterhub.com"
                     value={signupEmail}
                     onChange={(e) => setSignupEmail(e.target.value)}
                     required

@@ -8,7 +8,7 @@ const Footer = () => {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <ShoppingCart className="w-8 h-8 text-primary" />
-              <span className="text-lg font-bold">BuSmarter Hub</span>
+              <span className="text-lg font-bold">BuySmarter Hub</span>
             </div>
             <p className="text-sm text-muted-foreground">
               Your trusted source for the best deals from Amazon and Temu.
@@ -49,7 +49,7 @@ const Footer = () => {
             <strong>Affiliate Disclosure:</strong> As an Amazon Associate, I earn from qualifying purchases. This site also contains affiliate links to Temu and other partners. When you purchase through these links, we may earn a commission at no additional cost to you.
           </p>
           <p className="text-center text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} BuSmarter Hub. All rights reserved.
+            &copy; {new Date().getFullYear()} BuySmarter Hub. All rights reserved.
           </p>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { ShoppingCart } from "lucide-react";
+import logo from "@/assets/buysmarter-logo.png";
 
 const Footer = () => {
   return (
@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <ShoppingCart className="w-8 h-8 text-primary" />
+              <img src={logo} alt="BuySmarter Hub" className="w-8 h-8" />
               <span className="text-lg font-bold">BuySmarter Hub</span>
             </div>
             <p className="text-sm text-muted-foreground">

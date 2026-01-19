@@ -6,12 +6,14 @@ import Footer from "@/components/Footer";
 import { supabase } from "@/integrations/supabase/client";
 
 interface Product {
+  id: string;
   title: string;
   description: string;
   price: string;
   image: string;
   category: string;
   link: string;
+  platform: string;
 }
 
 const Index = () => {
@@ -40,12 +42,14 @@ const Index = () => {
 
     if (amazonProducts) {
       setTrendingAmazon(amazonProducts.map(p => ({
+        id: p.id,
         title: p.title,
         description: p.description || '',
         price: cleanPrice(p.price),
         image: p.image_url,
         category: p.category,
-        link: p.affiliate_link || '#'
+        link: p.affiliate_link || '#',
+        platform: p.platform,
       })));
     }
 
@@ -60,12 +64,14 @@ const Index = () => {
 
     if (temuProducts) {
       setTrendingTemu(temuProducts.map(p => ({
+        id: p.id,
         title: p.title,
         description: p.description || '',
         price: cleanPrice(p.price),
         image: p.image_url,
         category: p.category,
-        link: p.affiliate_link || '#'
+        link: p.affiliate_link || '#',
+        platform: p.platform,
       })));
     }
 
@@ -80,12 +86,14 @@ const Index = () => {
 
     if (featuredProducts) {
       setTopPicks(featuredProducts.map(p => ({
+        id: p.id,
         title: p.title,
         description: p.description || '',
         price: cleanPrice(p.price),
         image: p.image_url,
         category: p.category,
-        link: p.affiliate_link || '#'
+        link: p.affiliate_link || '#',
+        platform: p.platform,
       })));
     }
   };
@@ -107,10 +115,17 @@ const Index = () => {
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {trendingAmazon.map((product, index) => (
+              {trendingAmazon.map((product) => (
                 <ProductCard 
-                  key={index} 
-                  {...product} 
+                  key={product.id}
+                  id={product.id}
+                  title={product.title}
+                  description={product.description}
+                  price={product.price}
+                  image={product.image}
+                  category={product.category}
+                  platform={product.platform}
+                  affiliateLink={product.link}
                   buttonText="Buy on Amazon"
                   buttonVariant="default"
                   onButtonClick={() => window.open(product.link, '_blank')}
@@ -131,10 +146,17 @@ const Index = () => {
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {trendingTemu.map((product, index) => (
+              {trendingTemu.map((product) => (
                 <ProductCard 
-                  key={index} 
-                  {...product} 
+                  key={product.id}
+                  id={product.id}
+                  title={product.title}
+                  description={product.description}
+                  price={product.price}
+                  image={product.image}
+                  category={product.category}
+                  platform={product.platform}
+                  affiliateLink={product.link}
                   buttonText="Shop on Temu"
                   buttonVariant="accent"
                   onButtonClick={() => window.open(product.link, '_blank')}
@@ -155,10 +177,17 @@ const Index = () => {
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {topPicks.map((product, index) => (
+              {topPicks.map((product) => (
                 <ProductCard 
-                  key={index} 
-                  {...product} 
+                  key={product.id}
+                  id={product.id}
+                  title={product.title}
+                  description={product.description}
+                  price={product.price}
+                  image={product.image}
+                  category={product.category}
+                  platform={product.platform}
+                  affiliateLink={product.link}
                   buttonText="View Deal"
                   buttonVariant="secondary"
                   onButtonClick={() => window.open(product.link, '_blank')}

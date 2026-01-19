@@ -90,15 +90,22 @@ const ProductCard = ({
         <div className="flex items-center justify-between mb-4">
           <span className="text-2xl font-bold text-primary">{price}</span>
         </div>
-        <Button 
-          size="sm" 
-          className={`w-full ${buttonVariant === 'accent' ? 'bg-accent hover:bg-accent/90' : ''}`}
-          variant={buttonVariant === 'accent' ? 'default' : buttonVariant}
+        <a 
+          href={affiliateLink || '#'}
+          target="_blank"
+          rel="nofollow noopener noreferrer"
           onClick={handleClick}
+          className={`inline-flex items-center justify-center w-full gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-9 px-3 ${
+            buttonVariant === 'accent' 
+              ? 'bg-accent text-accent-foreground hover:bg-accent/90' 
+              : buttonVariant === 'secondary'
+              ? 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+              : 'bg-primary text-primary-foreground hover:bg-primary/90'
+          }`}
         >
-          <ExternalLink className="w-4 h-4 mr-2" />
+          <ExternalLink className="w-4 h-4" />
           {buttonText}
-        </Button>
+        </a>
       </CardContent>
     </Card>
   );

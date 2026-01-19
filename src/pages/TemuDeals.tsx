@@ -6,12 +6,14 @@ import { supabase } from "@/integrations/supabase/client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface Product {
+  id: string;
   title: string;
   description?: string;
   price: string;
   image: string;
   category?: string;
   link?: string;
+  platform: string;
 }
 
 const TemuDeals = () => {
@@ -42,12 +44,14 @@ const TemuDeals = () => {
         groupedProducts[category] = [];
       }
       groupedProducts[category].push({
+        id: product.id,
         title: product.title,
         description: product.description || '',
         price: product.price,
         image: product.image_url,
         category: category,
         link: product.affiliate_link || undefined,
+        platform: 'temu',
       });
     });
 
@@ -84,10 +88,17 @@ const TemuDeals = () => {
               <TabsContent value="all">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                   {allProducts.length > 0 ? (
-                    allProducts.map((product, index) => (
+                    allProducts.map((product) => (
                       <ProductCard
-                        key={index}
-                        {...product}
+                        key={product.id}
+                        id={product.id}
+                        title={product.title}
+                        description={product.description}
+                        price={product.price}
+                        image={product.image}
+                        category={product.category}
+                        platform={product.platform}
+                        affiliateLink={product.link}
                         buttonText="Shop on Temu"
                         buttonVariant="accent"
                         onButtonClick={() => product.link && window.open(product.link, '_blank')}
@@ -104,10 +115,17 @@ const TemuDeals = () => {
               {Object.entries(products).map(([category, categoryProducts]) => (
                 <TabsContent key={category} value={category}>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {categoryProducts.map((product, index) => (
+                    {categoryProducts.map((product) => (
                       <ProductCard
-                        key={index}
-                        {...product}
+                        key={product.id}
+                        id={product.id}
+                        title={product.title}
+                        description={product.description}
+                        price={product.price}
+                        image={product.image}
+                        category={product.category}
+                        platform={product.platform}
+                        affiliateLink={product.link}
                         buttonText="Shop on Temu"
                         buttonVariant="accent"
                         onButtonClick={() => product.link && window.open(product.link, '_blank')}

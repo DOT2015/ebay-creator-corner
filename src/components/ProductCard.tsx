@@ -3,26 +3,67 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
 
 interface ProductCardProps {
+  id?: string;
   title: string;
   description?: string;
   price: string;
   image: string;
   category?: string;
+  platform?: string;
+  affiliateLink?: string;
   buttonText: string;
   buttonVariant?: "default" | "secondary" | "accent";
   onButtonClick?: () => void;
 }
 
+const trackClick = async (productId: string | undefined, productTitle: string, platform: string, affiliateLink: string | undefined) => {
+  try {
+    const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/track-click`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+      },
+      body: JSON.stringify({
+        productId,
+        productTitle,
+        platform,
+        affiliateLink,
+      }),
+    });
+    
+    if (!response.ok) {
+      console.error('Failed to track click');
+    }
+  } catch (error) {
+    console.error('Error tracking click:', error);
+  }
+};
+
 const ProductCard = ({ 
+  id,
   title, 
   description, 
   price, 
   image, 
   category,
+  platform = 'other',
+  affiliateLink,
   buttonText,
   buttonVariant = "default",
   onButtonClick 
 }: ProductCardProps) => {
+  
+  const handleClick = async () => {
+    // Track the click in the background
+    trackClick(id, title, platform, affiliateLink);
+    
+    // Call the original handler
+    if (onButtonClick) {
+      onButtonClick();
+    }
+  };
+
   return (
     <Card className="group hover:shadow-card transition-all duration-300 overflow-hidden border-border/50">
       <div className="aspect-square overflow-hidden bg-secondary/30">
@@ -53,7 +94,7 @@ const ProductCard = ({
           size="sm" 
           className={`w-full ${buttonVariant === 'accent' ? 'bg-accent hover:bg-accent/90' : ''}`}
           variant={buttonVariant === 'accent' ? 'default' : buttonVariant}
-          onClick={onButtonClick}
+          onClick={handleClick}
         >
           <ExternalLink className="w-4 h-4 mr-2" />
           {buttonText}

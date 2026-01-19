@@ -26,6 +26,7 @@ import UserManager from "./pages/admin/users/UserManager";
 import Settings from "./pages/admin/settings/Settings";
 import MediaLibrary from "./pages/admin/media/MediaLibrary";
 import ActivityLog from "./pages/admin/activity/ActivityLog";
+import PurchaseTracking from "./pages/admin/purchases/PurchaseTracking";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +54,7 @@ const App = () => (
             <Route path="/admin/products/new" element={<ProductForm />} />
             <Route path="/admin/products/:id" element={<ProductForm />} />
             <Route path="/admin/links" element={<LinkManager />} />
+            <Route path="/admin/purchases" element={<PurchaseTracking />} />
             <Route path="/admin/blog" element={<BlogList />} />
             <Route path="/admin/blog/new" element={<BlogForm />} />
             <Route path="/admin/blog/:id" element={<BlogForm />} />

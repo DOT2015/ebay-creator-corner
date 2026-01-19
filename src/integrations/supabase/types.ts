@@ -407,6 +407,59 @@ export type Database = {
         }
         Relationships: []
       }
+      purchase_tracking: {
+        Row: {
+          affiliate_link: string | null
+          clicked_at: string
+          converted: boolean | null
+          converted_at: string | null
+          id: string
+          ip_address: string | null
+          notes: string | null
+          platform: string
+          product_id: string | null
+          product_title: string
+          referrer: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          affiliate_link?: string | null
+          clicked_at?: string
+          converted?: boolean | null
+          converted_at?: string | null
+          id?: string
+          ip_address?: string | null
+          notes?: string | null
+          platform: string
+          product_id?: string | null
+          product_title: string
+          referrer?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          affiliate_link?: string | null
+          clicked_at?: string
+          converted?: boolean | null
+          converted_at?: string | null
+          id?: string
+          ip_address?: string | null
+          notes?: string | null
+          platform?: string
+          product_id?: string | null
+          product_title?: string
+          referrer?: string | null
+          user_agent?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "purchase_tracking_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       site_settings: {
         Row: {
           id: string

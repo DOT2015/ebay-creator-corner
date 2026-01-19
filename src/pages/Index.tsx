@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import ProductCard from "@/components/ProductCard";
+import TemuBanner from "@/components/TemuBanner";
 import Footer from "@/components/Footer";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -132,6 +133,16 @@ const Index = () => {
                 />
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Temu Promotional Banner */}
+        <section className="py-8">
+          <div className="container px-4 sm:px-6 lg:px-8">
+            <TemuBanner 
+              affiliateLink="https://temu.to/k/pcl3gfzb4sc"
+              variant="hero"
+            />
           </div>
         </section>
 

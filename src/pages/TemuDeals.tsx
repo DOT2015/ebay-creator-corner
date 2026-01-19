@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import TemuBanner from "@/components/TemuBanner";
 import ProductCard from "@/components/ProductCard";
 import { supabase } from "@/integrations/supabase/client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -64,14 +65,10 @@ const TemuDeals = () => {
     <div className="min-h-screen bg-background">
       <Header />
       <main>
-        <section className="py-12 bg-accent text-white">
-          <div className="container px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-5xl font-bold mb-4">Temu Deals</h1>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto">
-              Discover incredible prices on quality products - shop smart, save more
-            </p>
-          </div>
-        </section>
+        <TemuBanner 
+          variant="hero" 
+          affiliateLink="https://temu.to/k/pcl3gfzb4sc"
+        />
 
         <section className="py-20 bg-gradient-card">
           <div className="container px-4 sm:px-6 lg:px-8">

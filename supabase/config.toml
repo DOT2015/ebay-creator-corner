@@ -2,3 +2,6 @@ project_id = "jdkajsiwvcvlecdbtaxn"
 
 [functions.fetch-amazon-product]
 verify_jwt = false
+
+[functions.track-click]
+verify_jwt = false
